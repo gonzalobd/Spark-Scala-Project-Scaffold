@@ -1,12 +1,16 @@
-/**
-  * Created by gbautista on 1/09/17.
-  */
+package com.gonzalobd.starter
 
 import com.gonzalobd.utils.{ConfigLoader, DataFrameLoader, SparkSessionLoader}
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
-object MainObject {
+/**
+  * Created by gbautista on 4/09/17.
+  */
+trait StartJob {
 
-  def main (args:Array[String]):Unit ={
+  def startJob(df:DataFrame,ss:SparkSession): Unit
+
+  def main(args: Array[String]): Unit = {
 
     // First we load config file from the first args
     val confLoader = new ConfigLoader
@@ -22,24 +26,11 @@ object MainObject {
     val dataFrame = new DataFrameLoader
     val df = dataFrame.loadJson(spark,jsonPath)
 
-
-
-    println(df.printSchema())
-
-    import spark.implicits._
-    import org.apache.spark.sql.functions.explode
-
-    // For example, we can search a Pizza restaurant in Queens
-    // grades column is an Array with all grades. We explode it, extract the score and sort by value to get the best restaurants
-
-    println(df.where(df("borough")==="Queens" && df("cuisine")==="Pizza")
-      .withColumn("grades",explode($"grades"))
-      .withColumn("score",$"grades".getItem("score"))
-      .sort($"score".desc).
-      show)
+    startJob(df,spark)
 
 
 
   }
+
 
 }
