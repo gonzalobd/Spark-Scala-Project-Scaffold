@@ -17,4 +17,4 @@ $SPARK_HOME/bin/spark-submit --class com.gonzalobd.jobs.Restaurants /path-to-jar
  ```
 
 ### Note: 
-Use spark v2.0.0 or higher (The job is using SparkSession as entry point)
+Use spark v2.0.0 or higher (The job is using SparkSession as entry point and Dataset API)
