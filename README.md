@@ -1,4 +1,4 @@
-# Spark-Scala-Project-Structure
+# Spark-Scala-Project-Scaffold
 
 This is a template project for Spark jobs with Scala.
 
