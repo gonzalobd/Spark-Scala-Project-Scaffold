@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+
+  hadoop:
+    build: ./hadoop
+    container_name: hadoop
+    ports:
+      - 9000:9000
+      - 50070:50070
+      - 50075:50075
+    command: bash -c "chmod +x /etc/bootstrap.sh && sh /etc/bootstrap.sh -d"
+
+
+networks:
+  default:
+    driver: bridge
