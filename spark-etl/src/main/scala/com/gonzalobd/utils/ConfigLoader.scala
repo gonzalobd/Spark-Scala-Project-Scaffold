@@ -6,14 +6,11 @@ package com.gonzalobd.utils
 
 import java.io.File
 
-import com.typesafe.config.{Config, ConfigFactory, ConfigUtil}
+import com.typesafe.config.{Config, ConfigFactory}
 
 class ConfigLoader {
 
   def loadConfig(args:String): Config ={
-
     ConfigFactory.parseFile(new File(args))
-
   }
-
 }
