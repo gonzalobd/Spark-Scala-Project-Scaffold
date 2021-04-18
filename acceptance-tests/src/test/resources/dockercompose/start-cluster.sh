@@ -7,3 +7,11 @@ while ! $(docker-compose -f src/test/resources/dockercompose/docker-compose.yml 
 do
     sleep 3
 done
+
+while ! $(docker-compose -f src/test/resources/dockercompose/docker-compose.yml logs master | grep -lq ALIVE)
+do
+    sleep 3
+done
+
+docker cp ../spark-etl/target/spark-etl-*-jar-with-dependencies.jar spark_master:/
+docker cp ../spark-etl/src/main/resources/application.conf spark_master:/
